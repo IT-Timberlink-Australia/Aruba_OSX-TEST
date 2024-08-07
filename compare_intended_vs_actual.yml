@@ -5,6 +5,6 @@
   connection: network_cli
 
   roles:
-    - role: ACTUAL_STATE
-    - role: INTENDED_STATE
-    - role: COMPARE_STATES
+    - role: actual_state
+    - role: intended_state
+    - role: compare_state
