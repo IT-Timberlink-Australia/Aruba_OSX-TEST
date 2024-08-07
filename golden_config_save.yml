@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  connection: local
   collections:
     - arubanetworks.aoscx
   tasks:
