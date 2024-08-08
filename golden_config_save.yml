@@ -1,6 +1,7 @@
 ---
 - hosts: all
   gather_facts: False
+  connection: local
   collections:
     - arubanetworks.aoscx
   vars:
