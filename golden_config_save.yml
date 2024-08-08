@@ -1,12 +1,16 @@
 ---
 - hosts: all
-  connection: network_cli
+  gather_facts: False
   collections:
     - arubanetworks.aoscx
+  vars:
+    ansible_connection: network_cli
   tasks:
-    - name: Copy Running Config to TFTP server as Golden Config
-      aoscx_backup_config:
-        config_name: running-config
-        remote_output_file_tftp_path: tftp://10.70.128.32/golden_config.cli
-        config_type: cli
-        vrf: mgmt
+    - name: Upload via TFTP
+      aoscx_command:
+        commands:
+        - command: 'copy tftp://10.70.128.32/golden_config.cli'
+          prompt:
+            - '.*Continue.*'
+          answer:
+            - y
