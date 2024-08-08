@@ -10,7 +10,7 @@
   tasks:
     - name: Copy Running Config to TFTP server as JSON
       aoscx_backup_config:
-      config_name: 'running-config'
-      remote_output_file_tftp_path: 'tftp://10.70.128.32/running.json'
-      config_type: 'json'
-      vrf: 'mgmt'
+        config_name: 'running-config'
+        remote_output_file_tftp_path: 'tftp://10.70.128.32/running.json'
+        config_type: 'json'
+        vrf: 'mgmt'
