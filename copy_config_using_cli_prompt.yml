@@ -9,7 +9,7 @@
     - name: Upload via TFTP
       aoscx_command:
         commands:
-        - command: 'copy tftp://10.70.128.38/tempconfig.txt secondary vrf mgmt'
+        - command: 'copy tftp://10.70.128.32/tempconfig.txt vrf mgmt'
           prompt:
             - '.*Continue.*'
           answer:
