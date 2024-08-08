@@ -1,0 +1,13 @@
+---
+- hosts: all
+  collections:
+    - arubanetworks.aoscx
+  vars:
+    ansible_aoscx_rest_version: 10.09 # Necessary for physical interfaces
+  tasks:
+    - name: Copy Running Config to TFTP server as JSON
+      aoscx_backup_config:
+        config_name: 'running-config'
+        remote_output_file_tftp_path: 'tftp://10.70.128.32/tempconfig.cli'
+        config_type: 'cli'
+        vrf: 'mgmt'
