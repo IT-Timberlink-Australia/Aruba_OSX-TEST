@@ -1,6 +1,4 @@
 ---
-collections:
-  # Install Ansible.netcommon from Ansible Galaxy
-  - name: ansible.netcommon
-    source: https://galaxy.ansible.com
-  - name: 
+  - name: arubanetworks.aoscx_role
+    src: https://github.com/aruba/aoscx-ansible-role.git
+    version: 4.0.0
