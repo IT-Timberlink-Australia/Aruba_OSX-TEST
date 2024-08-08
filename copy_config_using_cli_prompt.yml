@@ -9,12 +9,12 @@
     - name: Upload via TFTP
       aoscx_command:
         commands:
-        - command: 'copy tftp://10.70.128.32/tempconfig.txt vrf mgmt'
+        - command: 'copy running-config tftp://10.70.128.32/tempconfig.txt cli'
           prompt:
             - '.*Continue.*'
           answer:
             - y
-
-    - name: Show images
-      aoscx_command:
-        commands: ["show image"]
+#
+ #   - name: Show images
+ #     aoscx_command:
+ #       commands: ["show image"]
