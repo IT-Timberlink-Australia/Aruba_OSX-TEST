@@ -8,6 +8,6 @@
     - name: Copy Running Config to TFTP server as JSON
       aoscx_backup_config:
         config_name: 'running-config'
-        remote_output_file_tftp_path: 'tftp://10.70.128.32/belsw009_config.json'
-        config_type: 'json'
+        remote_output_file_tftp_path: 'tftp://10.70.128.32/belsw009_config.txt'
+        config_type: 'cli'
         vrf: 'mgmt'
