@@ -9,7 +9,7 @@
     - name: Upload via TFTP
       aoscx_command:
         commands:
-        - command: 'copy running-config tftp://10.70.128.32/hostname.json json'
+        - command: 'copy running-config tftp://10.70.128.32/hostname.txt json'
           prompt:
             - '.*Continue.*'
           answer:
