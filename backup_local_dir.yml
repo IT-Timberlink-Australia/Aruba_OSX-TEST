@@ -1,0 +1,5 @@
+---
+- name: Copy Running Config to local as JSON
+  aoscx_backup_config:
+      config_name: running-config
+      output_file: /home/tl_admin/backup_config/running-config.json
