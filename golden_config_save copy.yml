@@ -2,8 +2,6 @@
 - hosts: all
   collections:
     - arubanetworks.aoscx
-  vars:
-    ansible_aoscx_rest_version: 10.09 # Necessary for physical interfaces
   tasks:
     - name: Copy Running Config to TFTP server as JSON
       aoscx_backup_config:
