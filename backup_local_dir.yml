@@ -1,6 +1,9 @@
---- 
-- name: Copy Running Config to local as JSON
-  hosts: all
-  aoscx_backup_config:
+- hosts: all
+  collections:
+    - arubanetworks.aoscx
+  gather_facts: False
+  tasks:
+  - name: Copy Running Config to local as JSON
+    aoscx_backup_config:
      config_name: running-config
      output_file: /home/tl_admin/running-config.json
