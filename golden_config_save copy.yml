@@ -3,7 +3,7 @@
   collections:
     - arubanetworks.aoscx
   tasks:
-    - name: Copy Running Config to TFTP server as JSON
+    - name: Copy Running Config to local storage
       aoscx_backup_config:
         config_name: 'running-config'
         output_file: '/home/tl_admin/backup_config/running-config.json'
