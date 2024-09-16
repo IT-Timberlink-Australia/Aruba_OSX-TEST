@@ -2,6 +2,10 @@
 - hosts: all
   collections:
     - arubanetworks.aoscx
+  vars:
+  network:
+    username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
+    password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
   tasks:
     - name: Copy Running Config to local storage
       aoscx_backup_config:
