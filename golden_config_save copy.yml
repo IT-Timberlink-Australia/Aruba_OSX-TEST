@@ -6,10 +6,12 @@
     network:
       username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
       password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
+
   tasks:
     - name: Copy Running Config to local storage
       aoscx_backup_config:
         config_name: 'running-config'
+        
         remote_output_file_tftp_path: 'tftp://10.70.128.32/running-config.json'
         config_type: 'json'
         vrf: 'default'
