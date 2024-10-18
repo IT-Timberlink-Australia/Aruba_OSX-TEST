@@ -1,12 +1,12 @@
 ---
-- hosts: all
+# First play just captures FW version & hostname of the switch.
+- name: Get the switch version and hostname.
+  hosts: all
   collections:
     - arubanetworks.aoscx
+  gather_facts: False
   vars:
-    network:
-      username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
-      password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
-
+    ansible_connection: network_cli
   tasks:
     - name: Copy Running Config to local storage
       aoscx_backup_config:
