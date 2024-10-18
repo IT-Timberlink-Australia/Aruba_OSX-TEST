@@ -4,8 +4,8 @@
     - arubanetworks.aoscx
   vars:
     network:
-      username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
-      password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
+      username: '{{ ANSIBLE_NET_USERNAME }}'
+      password: '{{ ANSIBLE_NET_PASSWORD }}'
 
   tasks:
     - name: Copy Running Config to local storage
