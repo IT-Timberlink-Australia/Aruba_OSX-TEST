@@ -1,16 +1,13 @@
 ---
-# First play just captures FW version & hostname of the switch.
-- name: Get the switch version and hostname.
   hosts: all
   collections:
     - arubanetworks.aoscx
-  gather_facts: False
   vars:
     ansible_connection: network_cli
   tasks:
     - name: Copy Running Config to local storage
       aoscx_backup_config:
         config_name: 'running-config'
-        remote_output_file_tftp_path: 'tftp://10.70.128.32/running-config.json'
+        remote_output_file_tftp_path: 'tftp://10.70.128.32/{{hostname}}-config.json'
         config_type: 'json'
         vrf: 'default'
