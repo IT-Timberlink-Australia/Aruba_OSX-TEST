@@ -26,7 +26,6 @@
         hostname: "{{ hostname.stdout | join('') }}"
     - debug:
             msg: "{{ hostname }}"
-	tasks:
     - name: Take a backup of running-config, upload FW to primary partition, then boot from new FW on primary partition, if an upgrade is required
       block:
         - name: Copy Running Config to local (Ansible control node) as JSON file.
