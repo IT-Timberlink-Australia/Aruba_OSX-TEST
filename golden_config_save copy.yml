@@ -10,6 +10,6 @@
     - name: Copy Running Config to local storage
       aoscx_backup_config:
         config_name: 'running-config'
-        remote_output_file_tftp_path: 'tftp://10.70.128.32/{{ sites }}_{{ inventory_hostname }}_config.json'
-        config_type: 'json'
+        remote_output_file_tftp_path: 'tftp://10.70.128.32/bell-bay/{{ inventory_hostname }}_config.cli'
+        config_type: 'cli'
         vrf: 'default'
