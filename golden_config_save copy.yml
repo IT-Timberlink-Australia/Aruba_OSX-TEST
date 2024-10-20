@@ -9,11 +9,7 @@
     - name: Store DTG as fact
       set_fact:
         DTG: "{{ ansible_date_time.date }}"
-    - name: Create Directory {{hostvars.localhost.DTG}}
-      file:
-       path: tftp://10.70.128.32/{{hostvars.localhost.DTG}}
-       state: directory
-   run_once: true
+        
 - hosts: all
   gather_facts: False
   collections:
