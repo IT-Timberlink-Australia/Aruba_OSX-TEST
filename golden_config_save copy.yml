@@ -25,6 +25,6 @@
     - name: Copy Running Config to local storage
       aoscx_backup_config: 
         connfig_name: 'running-config'
-        remote_output_file_tftp_path: 'tftp://10.70.128.32/{{ hostvars }}{{ inventory_hostname }}_config.cli'
+        remote_output_file_tftp_path: 'tftp://10.70.128.32/{{hostvars.localhost.DTG}}{{ inventory_hostname }}_config.cli'
         config_type: 'cli'
         vrf: 'default'
