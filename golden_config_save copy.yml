@@ -13,3 +13,4 @@
         remote_output_file_tftp_path: 'tftp://10.70.128.32/bell-bay/{{ inventory_hostname }}_config.cli'
         config_type: 'cli'
         vrf: 'default'
+      when: {{ site }} == 'bell-bay'
