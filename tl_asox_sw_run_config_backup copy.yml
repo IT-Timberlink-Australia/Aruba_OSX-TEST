@@ -9,7 +9,15 @@
     - name: Store DTG as fact
       set_fact:
         DTG: "{{ ansible_date_time.date }}"
-
+- hosts: all
+  gather_facts: False
+  collections:
+    - ansible.builtin  
+  tasks:
+    - name: create folder   
+      ansible.builtin.file:
+        path: 'tftp://10.70.128.32/{{ inventory_hostname }}'
+        state: directory   
 - hosts: all
   gather_facts: False
   collections:
@@ -19,13 +27,9 @@
     ansible_connection: arubanetworks.aoscx.aoscx
     ansible_network_os: arubanetworks.aoscx.aoscx
   tasks:
-    - name: create folder   
-      ansible.builtin.file:
-        path: 'tftp://10.70.128.32/{{ inventory_hostname }}'
-        state: directory   
     - name: Copy Running Config to NAS storage
       aoscx_backup_config:
-        config_name: 'running-config'
-        remote_output_file_tftp_path: 'tftp://10.70.128.32/{{ inventory_hostname }}/{{hostvars.localhost.DTG}}_{{ inventory_hostname }}_runconfig.cli'
-        config_type: 'cli'
-        vrf: 'default'
+         config_name: 'running-config'
+         remote_output_file_tftp_path: 'tftp://10.70.128.32/{{ inventory_hostname }}/{{hostvars.localhost.DTG}}_{{ inventory_hostname }}_runconfig.cli'
+         config_type: 'cli'
+         vrf: 'default'
