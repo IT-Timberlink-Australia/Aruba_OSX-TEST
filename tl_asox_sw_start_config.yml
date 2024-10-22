@@ -10,7 +10,7 @@
       set_fact:
         DTG: "{{ ansible_date_time.date }}"
 
-- hosts: aoscx
+- hosts: all
   gather_facts: False
   collections:
     - arubanetworks.aoscx
