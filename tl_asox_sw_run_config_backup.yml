@@ -9,7 +9,6 @@
     - name: Store DTG as fact
       set_fact:
         DTG: "{{ ansible_date_time.date }}"
-
 - hosts: all
   gather_facts: False
   collections:
@@ -23,5 +22,4 @@
         config_name: 'running-config'
         remote_output_file_tftp_path: 'tftp://10.70.128.32/{{ inventory_hostname }}/{{hostvars.localhost.DTG}}_{{ inventory_hostname }}_runconfig.cli'
         config_type: 'cli'
-        vrf: 'default'  
-      #when: ansible_network_os = 'aoscx'          
+        vrf: 'default'        
