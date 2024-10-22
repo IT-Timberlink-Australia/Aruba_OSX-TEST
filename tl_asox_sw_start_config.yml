@@ -21,6 +21,6 @@
     - name: Copy Startup Config to NAS storage
       aoscx_backup_config:
         config_name: 'startup-config'
-        remote_output_file_tftp_path: 'tftp://10.70.128.32/{{ inventory_hostname }}/{{hostvars.localhost.DTG}}_{{ inventory_hostname }}_startconfig.cli'
+        remote_output_file_tftp_path: 'tftp://10.70.128.32/start_config/{{ inventory_hostname }}_{{hostvars.localhost.DTG}}_startconfig.cli'
         config_type: 'cli'
         vrf: 'default'              
