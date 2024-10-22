@@ -24,4 +24,4 @@
         remote_output_file_tftp_path: 'tftp://10.70.128.32/{{ inventory_hostname }}/{{hostvars.localhost.DTG}}_{{ inventory_hostname }}_runconfig.cli'
         config_type: 'cli'
         vrf: 'default'  
-    when: "ansible_network_os == 'aoscx'"          
+      when: ansible_network_os == 'aoscx'          
