@@ -8,15 +8,14 @@
   tasks:
     - name: >
         Retrieve all information from the device and save into a variable
-        "facts_output".
       aoscx_facts:
       register: facts_output
 
     - name: Retrieve power supply and domain name info from the device
       aoscx_facts:
-      gather_subset:
-      - software_info
-      - host_name
+        gather_subset:
+          - software_info
+          - host_name
 
     - debug:
         var: software_info
