@@ -6,20 +6,30 @@
     ansible_network_os: arubanetworks.aoscx.aoscx
     ansible_aoscx_rest_version: 10.09
   tasks:
-    - name: >
+    - name:
         Retrieve all information from the device and save into a variable
+        "facts_output".
       aoscx_facts:
       register: facts_output
 
-    - name: Retrieve power supply and domain name info from the device
-      aoscx_facts:
-        gather_subset:
-          - software_info
-          - host_name
+    - set_fact:
+        current_version_primary: "{{facts_output['ansible_facts']['ansible_net_software_images'].primary_image_version}}"
+
+    - set_fact:
+        current_version_secondary: "{{facts_output['ansible_facts']['ansible_net_software_images'].secondary_image_version}}"
+
+    - set_fact:
+        switch_hostname: "{{facts_output['ansible_facts']['ansible_net_hostname']}}"
+
+    - set_fact:
+        system_mac: "{{facts_output['ansible_facts']['ansible_net_product_info']['chassis,1'].base_mac_address}}"
 
     - debug:
-        var: software_info
+        var: current_version_primary
     - debug:
-        var: host_name
-
+        var: current_version_secondary
+    - debug:
+        var: switch_hostname
+    - debug:
+        var: system_mac
 
