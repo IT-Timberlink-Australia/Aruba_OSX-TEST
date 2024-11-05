@@ -4,8 +4,9 @@
   vars:
     ansible_connection: arubanetworks.aoscx.aoscx
     ansible_network_os: arubanetworks.aoscx.aoscx
+    ansible_aoscx_rest_version: 10.09
   tasks:
-    - name: >
+    - name:
         Retrieve all information from the device and save into a variable
         "facts_output".
       aoscx_facts:
@@ -18,7 +19,7 @@
         current_version_secondary: "{{facts_output['ansible_facts']['ansible_net_software_images'].secondary_image_version}}"
 
     - set_fact:
-        switch_hostname: "{{facts_output['ansible_facts']['ansible_net_platform_name']}}"
+        switch_hostname: "{{facts_output['ansible_facts']['ansible_net_hostname']}}"
 
     - set_fact:
         system_mac: "{{facts_output['ansible_facts']['ansible_net_product_info']['chassis,1'].base_mac_address}}"
