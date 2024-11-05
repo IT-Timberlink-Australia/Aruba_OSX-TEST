@@ -2,7 +2,8 @@
   collections:
     - arubanetworks.aoscx
   vars:
-    ansible_aoscx_rest_version: 10.09 # Necessary for physical interfaces
+    ansible_connection: arubanetworks.aoscx.aoscx
+    ansible_network_os: arubanetworks.aoscx.aoscx
   tasks:
     - name: >
         Retrieve all information from the device and save into a variable
