@@ -20,6 +20,6 @@
     - debug:
         var: software_info
     - debug:
-        var: shost_name
+        var: host_name
 
 
