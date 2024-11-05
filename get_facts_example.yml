@@ -19,7 +19,7 @@
         current_version_secondary: "{{facts_output['ansible_facts']['ansible_net_software_images'].secondary_image_version}}"
 
     - set_fact:
-        switch_hostname: "{{facts_output['ansible_facts']['ansible_net_hostname']}}"
+        switch_hostname: "{{facts_output['ansible_facts']['ansible_net_host']}}"
 
     - set_fact:
         system_mac: "{{facts_output['ansible_facts']['ansible_net_product_info']['chassis,1'].base_mac_address}}"
