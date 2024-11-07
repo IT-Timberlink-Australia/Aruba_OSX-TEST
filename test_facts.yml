@@ -22,5 +22,5 @@
     - name: Update the rack and position of an existing device
       netbox.netbox.netbox_device:     
       data:
-        cf_mac_address: {{system_mac}}
+        cf_mac_address: system_mac
       state: present
