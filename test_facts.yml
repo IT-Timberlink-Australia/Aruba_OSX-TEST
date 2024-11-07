@@ -1,6 +1,7 @@
 - hosts: all
   collections:
     - arubanetworks.aoscx
+    - netbox.netbox
   vars:
     ansible_connection: arubanetworks.aoscx.aoscx
     ansible_network_os: arubanetworks.aoscx.aoscx
@@ -19,8 +20,8 @@
     - set_fact:
         system_mac: "{{facts_output['ansible_facts']['ansible_net_product_info']['chassis,1'].base_mac_address}}"
 
-    - name: Update the rack and position of an existing device
+    - name: Update the mac address existing device
       netbox.netbox.netbox_device:     
       data:
-        cf_mac_address: system_mac
+        cf_mac_address: "{{system_mac}}"
       state: present
