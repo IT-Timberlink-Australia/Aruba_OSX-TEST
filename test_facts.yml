@@ -23,3 +23,4 @@
       netbox.netbox.netbox_device:     
       data:
         cf_mac_address: {{system_mac}}
+      state: present
