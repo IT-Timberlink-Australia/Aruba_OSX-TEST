@@ -1,4 +1,4 @@
-- hosts: all_aruba_switches
+- hosts: all
   collections:
     - arubanetworks.aoscx
   gather_facts: true    
