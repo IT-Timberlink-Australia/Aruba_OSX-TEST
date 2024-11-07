@@ -21,10 +21,15 @@
     - set_fact:
         system_mac: "{{facts_output['ansible_facts']['ansible_net_product_info']['chassis,1'].base_mac_address}}"
 
+    - set_fact:
+        interfaces_desc: "{{facts_output['ansible_facts']['ansible_net_interfaces'].description}}"
+
     - debug:
         var: current_version_primary
     - debug:
         var: current_version_secondary
     - debug:
         var: system_mac
+    - debug:
+        var: interfaces_desc
 
