@@ -10,3 +10,6 @@
       set_fact:
       sw_ports: "{{ sw_ports | default([]) + [item[0] | string] }}" 
       loop: "{{ host_interface_info }}"
+
+    - debug:
+        var: sw_ports
