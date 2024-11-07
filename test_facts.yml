@@ -1,15 +1,9 @@
-- hosts: all
+- hosts: all_aruba_switches
   collections:
     - arubanetworks.aoscx
-  vars:
-    ansible_connection: arubanetworks.aoscx.aoscx
-    ansible_network_os: arubanetworks.aoscx.aoscx
-    ansible_aoscx_rest_version: 10.09
+  gather_facts: true    
   tasks:
-    - name: Set switch ports to facts
-      set_fact:
-      sw_ports: "{{ sw_ports | default([]) + [item[0] | string] }}" 
-      loop: "{{ host_interface_info }}"
-
-    - debug:
-        var: sw_ports
+    - name: Aruba facts
+      aoscx_facts:
+        gather_network_resources: ['vlans', 'interfaces']
+      register: facts_vlan_output
