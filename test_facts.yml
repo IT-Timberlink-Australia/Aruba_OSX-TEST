@@ -7,11 +7,6 @@
     ansible_aoscx_rest_version: 10.09
   gather_facts: true    
   tasks:
-    - name: Aruba facts
-      aoscx_facts:
-        gather_network_resources: ['vlans', 'interfaces']
-      register: facts_vlan_output
-
     - name: Collect facts from switches
       aoscx_facts:
         gather_subset:
@@ -20,3 +15,11 @@
           - software_images
       async: 10800
       poll: 30
+
+    - set_fact:
+        system_mac: "{{facts_output['ansible_facts']['ansible_net_product_info']['chassis,1'].base_mac_address}}"
+
+    - name: Update the rack and position of an existing device
+      netbox.netbox.netbox_device:     
+      data:
+        cf_mac_address: {{system_mac}}
