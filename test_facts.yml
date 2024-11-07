@@ -1,9 +1,22 @@
 - hosts: all
   collections:
     - arubanetworks.aoscx
+  vars:
+    ansible_connection: arubanetworks.aoscx.aoscx
+    ansible_network_os: arubanetworks.aoscx.aoscx
+    ansible_aoscx_rest_version: 10.09
   gather_facts: true    
   tasks:
     - name: Aruba facts
       aoscx_facts:
         gather_network_resources: ['vlans', 'interfaces']
       register: facts_vlan_output
+
+    - name: Collect facts from switches
+      aoscx_facts:
+        gather_subset:
+          - host_name
+          - product_info
+          - software_images
+      async: 10800
+      poll: 30
