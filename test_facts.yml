@@ -7,6 +7,6 @@
     ansible_aoscx_rest_version: 10.09
   tasks:
     - name: Set switch ports to facts
-        set_fact:
-        sw_ports: "{{ sw_ports | default([]) + [item[0] | string] }}" 
-        loop: "{{ host_interface_info }}"
+      set_fact:
+      sw_ports: "{{ sw_ports | default([]) + [item[0] | string] }}" 
+      loop: "{{ host_interface_info }}"
