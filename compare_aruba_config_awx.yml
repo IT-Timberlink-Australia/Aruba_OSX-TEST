@@ -12,8 +12,8 @@
       ansible.netcommon.cli_command:
         command: "show running-config"
         host: "{{ inventory_hostname }}"  # Uses the host from the AWX inventory
-        username: "{{ aruba_user }}"      # Pulled from AWX credentials
-        password: "{{ aruba_password }}"  # Pulled from AWX credentials
+        username: "{{ ansible_user }}"      # Pulled from AWX credentials
+        password: "{{ ansible_password }}"  # Pulled from AWX credentials
       register: aruba_config
 
     - name: Fetch configuration from NetBox
