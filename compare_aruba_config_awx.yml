@@ -1,0 +1,41 @@
+---
+- name: Compare Aruba Switch Config with NetBox
+  hosts: all  # Targets hosts from the AWX inventory
+  gather_facts: no
+  vars:
+    netbox_url: "{{ tower.credential.netbox_url }}"  # Pulled from AWX credentials
+    netbox_token: "{{ tower.credential.netbox_token }}"  # Pulled from AWX credentials
+    device_name: "{{ inventory_hostname }}"  # Assumes the device name in NetBox matches the inventory hostname
+
+  tasks:
+    - name: Fetch running configuration from Aruba switch
+      ansible.netcommon.cli_command:
+        command: "show running-config"
+        host: "{{ inventory_hostname }}"  # Uses the host from the AWX inventory
+        username: "{{ aruba_user }}"      # Pulled from AWX credentials
+        password: "{{ aruba_password }}"  # Pulled from AWX credentials
+      register: aruba_config
+
+    - name: Fetch configuration from NetBox
+      uri:
+        url: "{{ netbox_url }}/api/dcim/devices/?name={{ device_name }}"
+        method: GET
+        headers:
+          Authorization: "Token {{ netbox_token }}"
+          Accept: "application/json"
+        return_content: yes
+      register: netbox_device
+
+    - name: Extract config context from NetBox device
+      set_fact:
+        netbox_config: "{{ netbox_device.json.results[0].config_context.config | default('') }}"
+
+    - name: Compare configurations
+      debug:
+        msg: >
+          The configurations for {{ inventory_hostname }} {% if aruba_config.stdout == netbox_config %}match{% else %}do not match{% endif %}.
+
+    - name: Display differences (if any)
+      debug:
+        msg: "{{ aruba_config.stdout | difference(netbox_config.split('\n')) }}"
+      when: aruba_config.stdout != netbox_config
